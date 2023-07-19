@@ -8,7 +8,7 @@
             <div>
                 <h3 class="font-bold py-2">Note</h3>
                 <textarea name="note" id="note" cols="30" rows="10" v-model.trim="mainNote"
-                    class="p-3 resize-none outline-none"></textarea>
+                    class="p-3 resize-none outline-none max-w-screen-sm"></textarea>
             </div>
             <button class="bg-red-600 w-1/2 rounded text-white p-2 hover:bg-red-400" @click="handleClick">Add note</button>
             <button class="cross select-none" @click="showModal = false">
@@ -47,6 +47,7 @@
     }
     .modal {
         position: relative;
+        width: fit-content;
     }
     .cross {
         position: absolute;
