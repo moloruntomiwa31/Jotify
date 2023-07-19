@@ -1,6 +1,6 @@
 <template>
     <div class="overlay flex items-center justify-center p-6 " v-if="showModal">
-        <div class="modal flex-col space-y-6 flex bg-gray-400 p-8 rounded-md">
+        <div class="modal flex-col space-y-6 flex bg-gray-400 p-8 rounded-md max-w-sm">
             <div>
                 <h3 class="font-bold py-2">Title</h3>
                 <input type="text" class="p-2 outline-none" v-model.trim="mainTitle">

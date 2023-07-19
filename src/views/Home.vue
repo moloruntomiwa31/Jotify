@@ -7,7 +7,7 @@
             <div class="py-6 text-center space-y-6 md:text-left md:w-1/2 lg:w-1/3">
                 <h1 class="text-black font-bold text-5xl">Jot<span class="text-red-400">ify</span></h1>
                 <p class="text-xl leading-8">
-                    Jotify is a a note-taking app that lets you easily create notes and reminders to help you keep track of your thoughts. 
+                    Jotify is a note-taking app that lets you easily create notes and reminders to help you keep track of your thoughts. 
                     It helps you to quickly capture your thoughts. It's a great choice for students, clean design and easy to use.
                     Jotify is free, with no premium version.
                 </p>
