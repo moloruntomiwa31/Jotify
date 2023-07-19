@@ -1,5 +1,5 @@
 <template>
-    <div class="overlay flex items-center justify-center" v-if="showModal">
+    <div class="overlay flex items-center justify-center p-6 " v-if="showModal">
         <div class="modal flex-col space-y-6 flex bg-gray-400 p-8 rounded-md">
             <div>
                 <h3 class="font-bold py-2">Title</h3>
@@ -41,13 +41,13 @@
         position: absolute;
         top: 0;
         background-color: rgba(0, 0, 0, 0.8);
-        height: 100vh;
-        width: 100%;
+        min-height: 100vh;
+        min-width: 100%;
         left: 0;
     }
     .modal {
         position: relative;
-        width: fit-content;
+        min-width: fit-content;
     }
     .cross {
         position: absolute;
