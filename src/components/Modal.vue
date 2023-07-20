@@ -7,7 +7,7 @@
             </div>
             <div>
                 <h3 class="font-bold py-2">Note</h3>
-                <textarea name="note" id="note" cols="30" rows="10" v-model.trim="mainNote"
+                <textarea name="note" id="note" cols="25" rows="10" v-model.trim="mainNote"
                     class="p-3 resize-none outline-none max-w-screen-sm"></textarea>
             </div>
             <button class="bg-red-600 w-1/2 rounded text-white p-2 hover:bg-red-400" @click="handleClick">Add note</button>
@@ -41,8 +41,8 @@
         position: absolute;
         top: 0;
         background-color: rgba(0, 0, 0, 0.8);
-        min-height: 100vh;
-        min-width: 100%;
+        height: 100vh;
+        width: 100%;
         left: 0;
     }
     .modal {
@@ -59,4 +59,5 @@
         position: absolute;
         top: -10px;
     }
+    input, textarea {max-width: 85%;}
 </style>
