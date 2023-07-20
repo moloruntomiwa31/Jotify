@@ -2,10 +2,10 @@
     <main class="container mx-auto p-8 items-center mt-24">
         <Modal :showModal="showModal" :error="error" @submit="addNote"/>
         <div class="flex justify-between space-x-4 items-center md:justify-around details">
-            <h2 class="font-bold text-sm md:text-4xl w-1/2">
-                Welcome, <input type="text" placeholder="Name..." class="text-red-500" v-model="name">
+            <h2 class="font-bold text-xl md:text-4xl w-1/2">
+                Welcome, <input type="text" placeholder="Name..." class="text-red-500 bg-none" v-model="name">
             </h2>
-            <button @click="showModal = true" class="text-sm md:text-xl select-none bg-gray-300 px-2 py-4 rounded-xl hover:border-red-600 hover:border-2 hover:bg-gray-200 duration-200 ease-linear">Add Notes</button>
+            <button @click="showModal = true" class="text-md md:text-xl select-none bg-gray-300 px-2 py-4 rounded-xl hover:border-red-600 hover:border-2 hover:bg-gray-200 duration-200 ease-linear">Add Notes</button>
         </div>
         <Card :notes="notes" @deleteNote="deleteNote"/>
     </main>
@@ -24,12 +24,12 @@
         localStorage.setItem("name", newval)
     })
     onMounted(() => {
-        name.value = localStorage.getItem("name")
-        // notes.value = JSON.parse(localStorage.getItem("notes"))
+        name.value = localStorage.getItem("name") || ""
+        notes.value = JSON.parse(localStorage.getItem("notes")) || []
     })
-    // watch(notes, (newItem) => {
-    //     localStorage.setItem("notes", JSON.stringify(newItem))
-    // }, {deep: true})
+    watch(notes, (newItem) => {
+        localStorage.setItem("notes", JSON.stringify(newItem))
+    }, {deep: true})
 
     const addColor = () => {
         return "hsl(" + Math.random() * 360 + ", 100%, 75%)"
