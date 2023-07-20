@@ -1,9 +1,11 @@
 <template>
     <main class="container mx-auto p-8 items-center mt-24">
         <Modal :showModal="showModal" :error="error" @submit="addNote"/>
-        <div class="flex justify-between space-x-4 items-center md:justify-around">
-            <h2 class="font-bold text-2xl md:text-4xl">Welcome, <span class="text-red-500">Mate!</span></h2>
-            <button @click="showModal = true" class="select-none bg-gray-300 px-2 py-4 rounded-xl hover:border-red-600 hover:border-2 hover:bg-gray-200 duration-200 ease-linear">Add Notes</button>
+        <div class="flex justify-between space-x-4 items-center md:justify-around details">
+            <h2 class="font-bold text-sm md:text-4xl w-1/2">
+                Welcome, <input type="text" placeholder="Name..." class="text-red-500" v-model="name">
+            </h2>
+            <button @click="showModal = true" class="text-sm md:text-xl select-none bg-gray-300 px-2 py-4 rounded-xl hover:border-red-600 hover:border-2 hover:bg-gray-200 duration-200 ease-linear">Add Notes</button>
         </div>
         <Card :notes="notes" @deleteNote="deleteNote"/>
     </main>
@@ -16,6 +18,18 @@
     const showModal = ref(false)
     const notes = ref([])
     const error = ref("")
+    const name = ref("")
+
+    watch(name, (newval) => {
+        localStorage.setItem("name", newval)
+    })
+    onMounted(() => {
+        name.value = localStorage.getItem("name")
+        // notes.value = JSON.parse(localStorage.getItem("notes"))
+    })
+    // watch(notes, (newItem) => {
+    //     localStorage.setItem("notes", JSON.stringify(newItem))
+    // }, {deep: true})
 
     const addColor = () => {
         return "hsl(" + Math.random() * 360 + ", 100%, 75%)"
@@ -40,24 +54,20 @@
     const deleteNote = (index) => {
         notes.value.splice(index, 1)
     }
-    // const loadItems = () => {
-    //     if (localStorage.getItem("notes") !== null) {
-    //         notes.value =  JSON.parse(localStorage.getItem("notes")) 
-    //     }
-    // }  
-    // onMounted(loadItems())
-    // watch(notes, (newItem) => {
-    //     localStorage.setItem("notes", JSON.stringify(newItem))
-    //     {deep: true}
-    // })
-    // watch(notes, localStorage.setItem('myArray', JSON.stringify(notes)), { deep: true });
-    // if (localStorage.getItem("myArray")) {
-    //     notes.value = JSON.parse(localStorage.getItem('myArray'));
-    // }
 </script>
 
 <style scoped>
      * {
         font-family: Poppins;
+    }
+    input[type="text"] {
+        display: inline-block;
+        outline: none;
+    }
+    input[type="text"]::placeholder {
+        color: rgb(249, 107, 107);
+    }
+    .details {
+        max-width: 100%;
     }
 </style>

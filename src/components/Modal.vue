@@ -3,12 +3,12 @@
         <div class="modal flex-col space-y-6 flex bg-gray-400 p-8 rounded-md max-w-sm">
             <div>
                 <h3 class="font-bold py-2">Title</h3>
-                <input type="text" class="p-2 outline-none" v-model.trim="mainTitle">
+                <input type="text" class="p-2 outline-none" v-model.trim="mainTitle" placeholder="Title...">
             </div>
             <div>
                 <h3 class="font-bold py-2">Note</h3>
                 <textarea name="note" id="note" cols="25" rows="10" v-model.trim="mainNote"
-                    class="p-3 resize-none outline-none max-w-screen-sm"></textarea>
+                    class="p-3 resize-none outline-none max-w-screen-sm" placeholder="Note goes here..."></textarea>
             </div>
             <button class="bg-red-600 w-1/2 rounded text-white p-2 hover:bg-red-400" @click="handleClick">Add note</button>
             <button class="cross select-none" @click="showModal = false">
@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-    import {defineProps, ref, defineEmits} from "vue"
+    import { ref} from "vue"
     const {showModal} = defineProps(["showModal", "error"])
     const emit = defineEmits(["handleClick", "submit"])
     const mainTitle = ref("")
