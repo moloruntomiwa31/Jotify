@@ -2,7 +2,7 @@
     <main class="container mx-auto p-8 items-center mt-24">
         <Modal :showModal="showModal" :error="error" @submit="addNote"/>
         <div class="flex justify-between space-x-4 items-center md:justify-around">
-            <h2 class="font-bold text-2xl md:text-4xl">Welcome <span class="text-red-500">Mate!</span></h2>
+            <h2 class="font-bold text-2xl md:text-4xl">Welcome, <span class="text-red-500">Mate!</span></h2>
             <button @click="showModal = true" class="select-none bg-gray-300 px-2 py-4 rounded-xl hover:border-red-600 hover:border-2 hover:bg-gray-200 duration-200 ease-linear">Add Notes</button>
         </div>
         <Card :notes="notes" @deleteNote="deleteNote"/>
