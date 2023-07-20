@@ -31,6 +31,7 @@
             title: title,
             note: note,
             date: new Date().toLocaleDateString(),
+            time: new Date().toLocaleTimeString(),
             backgroundColor: addColor()
         })
         showModal.value = false
@@ -44,7 +45,7 @@
     //         notes.value =  JSON.parse(localStorage.getItem("notes")) 
     //     }
     // }  
-    // onMounted(() => loadItems())
+    // onMounted(loadItems())
     // watch(notes, (newItem) => {
     //     localStorage.setItem("notes", JSON.stringify(newItem))
     //     {deep: true}
