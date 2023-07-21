@@ -1,7 +1,8 @@
 <template>
     <main class="container mx-auto p-8 items-center mt-24">
+        <User :tasks="tasks"/>
         <header>
-            <h2 class="justify-center text-2xl pb-6 flex items-center">
+            <h2 class="justify-center text-3xl pb-6 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36">
                     <path fill="#f44245"
                         d="M29.29 34H6.71A1.7 1.7 0 0 1 5 32.31V6.69A1.75 1.75 0 0 1 7 5h2v2H7v25h22V7h-2V5h2.25A1.7 1.7 0 0 1 31 6.69v25.62A1.7 1.7 0 0 1 29.29 34Z"
@@ -47,10 +48,10 @@
             <p>e.g Watch Looney Tunes, Trade Stock</p>
         </form>
         <div class="tasks space-y-4 rounded-lg"  v-if="tasks.length > 0">
-            <div class="flex space-x-4 items-center justify-around" v-for="task in tasks">
+            <div class="flex space-x-4 items-center justify-between md:justify-around" v-for="task in tasks">
                 <input type="checkbox">
                 <label for="">{{ task }}</label>
-                <button>
+                <button @click="deleteTask(index)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
                 </button>
             </div>
@@ -60,6 +61,7 @@
 
 <script setup>
     import {ref, onMounted, watch} from "vue"
+    import User from "../components/User.vue"
     const tasks = ref([])
     const task = ref("")
     const error = ref(false)
@@ -72,6 +74,9 @@
         error.value = false
         tasks.value.push(task.value)
         task.value = ""
+    }
+    const deleteTask = (index) => {
+        tasks.value.splice(index, 1)    
     }
     watch(tasks, (newItem) => {
         localStorage.setItem("tasks", JSON.stringify(newItem))
@@ -101,4 +106,8 @@ h2, form {font-family: Poppins;}
     width: 80%;
 }
 .task-bar .sm-btn {position: absolute; top: 13px; right: 60px;}
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: rgb(104, 98, 97);
+}
 </style>
