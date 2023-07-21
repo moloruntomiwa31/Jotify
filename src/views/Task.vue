@@ -156,10 +156,21 @@ input[type="checkbox"]:checked+label {
 }
 
 .back {
-        aspect-ratio: 540/960;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-image: url("../../public/blob-haikei.svg");
+    aspect-ratio: 540/960;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../public/blob-haikei.svg");
+    animation: slide 3s ease-in-out 0.7s;
+}
+
+@keyframes slide {
+    0% {
+        transform: scale(0);
     }
+
+    100% {
+        transform: scale(1);
+    }
+}
 </style>

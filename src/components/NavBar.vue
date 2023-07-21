@@ -36,6 +36,7 @@
  * {
         font-family: Poppins;
     }
+    nav {min-width: 100%;}
     #close {
         display: none;
         transition: all 0.9s ease-in-out;
