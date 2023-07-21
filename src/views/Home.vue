@@ -1,11 +1,11 @@
 <template>
-    <main class="container mx-auto p-8 items-center mt-24">
+    <main class="container mx-auto p-8 items-center mt-24 medium-back">
         <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-10">
             <div class="max-w-md flex justify-center md:w-1/2 ">
-                <img src="../assets/img/22874413_6686852.jpg" alt="">
+                <img src="../assets/img/22874413_6686852.jpg" alt="" class="rounded-full">
             </div>
             <div class="py-6 text-center space-y-6 md:text-left md:w-1/2 lg:w-1/3">
-                <h1 class="text-black font-bold text-5xl">Jot<span class="text-red-400">ify</span></h1>
+                <h1 class="text-black font-bold text-5xl">Jot<span class="text-red-500">ify</span></h1>
                 <p class="text-xl leading-8">
                     Jotify is a note-taking app that lets you easily create notes and reminders to help you keep track of your thoughts. 
                     It also has a task list feature where you can add todos.
@@ -31,5 +31,12 @@ const router = useRouter()
 <style scoped>
     * {
         font-family: Poppins;
+    }
+    .medium-back{
+        aspect-ratio: 960/540;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-image: url("../../public/circle-scatter-haikei.svg");
     }
 </style>
