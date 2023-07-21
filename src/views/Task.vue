@@ -44,16 +44,20 @@
                     Add Task
                 </button>
             </div>
-            <p class="text-red-600 italic" v-if="error">Please add task</p>
+            <Transition name="fade">
+                <p class="text-red-600 italic" v-if="error">Please add task</p>
+            </Transition>
             <p>e.g Watch Looney Tunes, Trade Stock</p>
         </form>
         <div class="tasks space-y-4 rounded-lg"  v-if="tasks.length > 0">
-            <div class="flex space-x-4 items-center justify-between md:justify-around" v-for="task in tasks">
-                <input type="checkbox">
-                <label for="">{{ task }}</label>
-                <button @click="deleteTask(index)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
-                </button>
+            <div v-for="task in tasks">
+                <div class="flex justify-between md:justify-around bg-gray-100 p-3 shadow-md rounded-xl">
+                    <input type="checkbox">
+                    <label for="">{{ task }}</label>
+                    <button @click="deleteTask(index)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
+                    </button>
+                </div>
             </div>
         </div>
     </main>
@@ -88,7 +92,6 @@
 
 <style scoped>
 .tasks {
-    background-color: rgb(255, 114, 114);
     padding: 10px;
     margin: 2rem auto;
     width: 80%;
@@ -109,5 +112,21 @@ h2, form {font-family: Poppins;}
 input[type="checkbox"]:checked + label {
     text-decoration: line-through;
     color: rgb(104, 98, 97);
+}
+
+/* animations */
+.fade-enter-from, .fade-leave-to {opacity: 0;}
+.fade-enter-active, .fade-leave-active {transition: all 0.7s ease-in;}
+
+.taskList-enter-from, .taskList-leave-to {
+    opacity: 0;
+    transform: scale(0.6);
+}
+.taskList-enter-to, .taskList-leave-from {
+    opacity: 1;
+    transform: scale(1);
+}
+.taskList-enter-active, .taskList-leave-active {
+    transition: all 0.5s ease;
 }
 </style>

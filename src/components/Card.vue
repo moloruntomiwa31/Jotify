@@ -1,6 +1,6 @@
 <template>
      <div class="card-container container p-4 my-6 flex justify-center">
-            <div class="card flex flex-col space-y-2 text-black" v-for="(note, index) in notes" :key="note.id" :style="{backgroundColor : note.backgroundColor}">
+            <div class="card flex flex-col space-y-2 text-black shadow-md" v-for="(note, index) in notes" :key="note.id" :style="{backgroundColor : note.backgroundColor}">
                 <h4 class="font-bold text-lg">{{ note.title }}</h4>
                 <p class="text-gray-800">
                     {{ note.note }}
