@@ -30,15 +30,9 @@
                 </div>
             </div>
             <div class="task-bar flex justify-center">
-                <input type="text" v-model.trim="task" class="p-3 bg-gray-200 rounded-lg outline-none text-red-500" placeholder="Task here.." @kepup.enter="addNote">
+                <input type="text" v-model.trim="task" class="p-3 bg-gray-200 rounded-lg outline-none text-red-500" placeholder="Task here.." @keyup.enter="addTask">
                 <button @click="addTask" class="md:hidden sm-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <g fill="none">
-                            <path d="M0 0h24v24H0z" />
-                            <path fill="#f44245"
-                                d="M10.5 2a8.5 8.5 0 0 1 6.676 13.762l3.652 3.652a1 1 0 0 1-1.414 1.414l-3.652-3.652A8.5 8.5 0 1 1 10.5 2Zm0 2a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0-13Zm0 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11Z" />
-                        </g>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#f45044" d="M17 13h-4v4h-2v-4H7v-2h4V7h2v4h4m2-8H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/></svg>
                 </button>
                 <button @click="addTask" class="hidden md:block px-4 mx-4 bg-gray-300 py-2 rounded-md hover:text-red-400">
                     Add Task
