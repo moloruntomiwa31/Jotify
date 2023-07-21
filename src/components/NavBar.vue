@@ -7,6 +7,7 @@
         <div class="md:flex items-center justify-between space-x-2 md:space-x-4 hidden">
             <RouterLink to="/" active-class="active" class="hover:text-red-500 duration-100 ease-linear">Home</RouterLink>
             <RouterLink to="/getstarted/note" active-class="active" class="hover:text-red-500 duration-100 ease-linear">Get Started</RouterLink>
+            <RouterLink to="/tasks" active-class="active" class="hover:text-red-500 duration-100 ease-linear">Tasks</RouterLink>
         </div>
         <button class="block md:hidden">
             <svg id="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m5 13l4 4l-1.4 1.42L1.18 12L7.6 5.58L9 7l-4 4h16v2H5m16-7v2H11V6h10m0 10v2H11v-2h10Z"/></svg>
@@ -17,6 +18,7 @@
         <div class="flex flex-col links space-y-6 text-center">
             <RouterLink to="/" class="hover:text-red-400 transition-all duration-300 ease-linear">Home</RouterLink>
             <RouterLink to="/getstarted/note" class="hover:text-red-400 border-2 p-2 rounded-xl hover:border-red-400 transition-all duration-300 ease-linear">Get Started</RouterLink>
+            <RouterLink to="/tasks" class="hover:text-red-400 transition-all duration-300 ease-linear">Tasks</RouterLink>
         </div>
         <button id="close">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 15 15"><path fill="white" d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27Z"/></svg>
@@ -60,6 +62,7 @@
         width: 100%;
         left: 0;
         display: none;
+        z-index: 99;
     }
     .links {
         position: absolute;

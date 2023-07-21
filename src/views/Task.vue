@@ -1,0 +1,104 @@
+<template>
+    <main class="container mx-auto p-8 items-center mt-24">
+        <header>
+            <h2 class="justify-center text-2xl pb-6 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36">
+                    <path fill="#f44245"
+                        d="M29.29 34H6.71A1.7 1.7 0 0 1 5 32.31V6.69A1.75 1.75 0 0 1 7 5h2v2H7v25h22V7h-2V5h2.25A1.7 1.7 0 0 1 31 6.69v25.62A1.7 1.7 0 0 1 29.29 34Z"
+                        class="clr-i-outline clr-i-outline-path-1" />
+                    <path fill="#f44245"
+                        d="M16.66 25.76L11.3 20.4a1 1 0 0 1 1.42-1.4l3.94 3.94l8.64-8.64a1 1 0 0 1 1.41 1.41Z"
+                        class="clr-i-outline clr-i-outline-path-2" />
+                    <path fill="#f44245"
+                        d="M26 11H10V7.33A2.34 2.34 0 0 1 12.33 5h1.79a4 4 0 0 1 7.75 0h1.79A2.34 2.34 0 0 1 26 7.33ZM12 9h12V7.33a.33.33 0 0 0-.33-.33H20V6a2 2 0 0 0-4 0v1h-3.67a.33.33 0 0 0-.33.33Z"
+                        class="clr-i-outline clr-i-outline-path-3" />
+                    <path fill="none" d="M0 0h36v36H0z" />
+                </svg>
+                Jot<span class="text-red-400">ify</span> Tasks
+            </h2>
+        </header>
+        <form class="flex flex-col justify-center items-center space-y-4" @submit.prevent="addNote">
+            <div class="flex space-x-4 category">
+                <div class="flex flex-col items-center">
+                    <label for="others" class="text-red-500 text-lg">Others</label>
+                    <input type="radio" name="usage" id="others" value="others" class=" h-4 w-4">
+                </div>
+                <div class="flex flex-col items-center">
+                    <label for="personal" class="text-blue-700 text-lg">Personal</label>
+                    <input type="radio" name="usage" id="personal" value="personal" class=" h-4 w-4">
+                </div>
+            </div>
+            <div class="task-bar flex justify-center">
+                <input type="text" v-model.trim="task" class="p-3 bg-gray-200 rounded-lg outline-none text-red-500" placeholder="Task here.." @kepup.enter="addNote">
+                <button @click="addTask" class="md:hidden sm-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <g fill="none">
+                            <path d="M0 0h24v24H0z" />
+                            <path fill="#f44245"
+                                d="M10.5 2a8.5 8.5 0 0 1 6.676 13.762l3.652 3.652a1 1 0 0 1-1.414 1.414l-3.652-3.652A8.5 8.5 0 1 1 10.5 2Zm0 2a6.5 6.5 0 1 0 0 13a6.5 6.5 0 0 0 0-13Zm0 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11Z" />
+                        </g>
+                    </svg>
+                </button>
+                <button @click="addTask" class="hidden md:block px-4 mx-4 bg-gray-300 py-2 rounded-md hover:text-red-400">
+                    Add Task
+                </button>
+            </div>
+            <p class="text-red-600 italic" v-if="error">Please add task</p>
+            <p>e.g Watch Looney Tunes, Trade Stock</p>
+        </form>
+        <div class="tasks space-y-4 rounded-lg"  v-if="tasks.length > 0">
+            <div class="flex space-x-4 items-center justify-around" v-for="task in tasks">
+                <input type="checkbox">
+                <label for="">{{ task }}</label>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z"/><path fill="currentColor" d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z"/></svg>
+                </button>
+            </div>
+        </div>
+    </main>
+</template>
+
+<script setup>
+    import {ref, onMounted, watch} from "vue"
+    const tasks = ref([])
+    const task = ref("")
+    const error = ref(false)
+
+    const addTask = () => {
+        if (!task.value.length > 0) {
+            error.value = true
+            return
+        }
+        error.value = false
+        tasks.value.push(task.value)
+        task.value = ""
+    }
+    watch(tasks, (newItem) => {
+        localStorage.setItem("tasks", JSON.stringify(newItem))
+    }, {deep: true})
+    onMounted(() => {
+        tasks.value = JSON.parse(localStorage.getItem("tasks")) || []
+    })
+</script>
+
+<style scoped>
+.tasks {
+    background-color: rgb(255, 114, 114);
+    padding: 10px;
+    margin: 2rem auto;
+    width: 80%;
+    color: rgb(37, 37, 37);
+}
+p, .tasks {font-family: Syne;}
+h2, form {font-family: Poppins;}
+
+.task-bar {
+    min-width: 100%;
+    position: relative;
+}
+
+.task-bar input[type="text"] {
+    width: 80%;
+}
+.task-bar .sm-btn {position: absolute; top: 13px; right: 60px;}
+</style>
