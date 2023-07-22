@@ -145,16 +145,5 @@ input[type="checkbox"]:checked+label {
     background-position: center;
     background-size: cover;
     background-image: url("../../public/blob-haikei.svg");
-    animation: slide 2s ease-in-out 0.7s;
-}
-
-@keyframes slide {
-    0% {
-        transform: scale(0.5);
-    }
-
-    100% {
-        transform: scale(1);
-    }
 }
 </style>
