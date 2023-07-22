@@ -1,5 +1,6 @@
 <template>
-    <main class="container mx-auto p-8 items-center mt-24" :class="{ back: removeClass }">
+    <Preloader v-if="isLoading"/>
+    <main class="container mx-auto p-8 items-center mt-24" :class="{ back: removeClass }" v-else>
         <User :tasks="tasks" />
         <header>
             <h2 class="justify-center text-3xl pb-6 flex items-center">
@@ -67,11 +68,13 @@
 </template>
 
 <script setup>
+import Preloader from "../components/Preloader.vue"
 import { ref, onMounted, watch, onUnmounted } from "vue"
 import User from "../components/User.vue"
 const tasks = ref([])
 const task = ref("")
 const error = ref(false)
+const isLoading = ref(true)
 
 const addTask = () => {
     if (!task.value.length > 0) {
@@ -99,6 +102,9 @@ const handleResize = () => {
 onMounted(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
+    setTimeout(() => {
+    isLoading.value = false;
+  }, 1000); 
 });
 
 onUnmounted(() => {
@@ -161,12 +167,12 @@ input[type="checkbox"]:checked+label {
     background-position: center;
     background-size: cover;
     background-image: url("../../public/blob-haikei.svg");
-    animation: slide 3s ease-in-out 0.7s;
+    animation: slide 2s ease-in-out 0.7s;
 }
 
 @keyframes slide {
     0% {
-        transform: scale(0);
+        transform: scale(0.5);
     }
 
     100% {

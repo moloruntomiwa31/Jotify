@@ -1,7 +1,8 @@
 <template>
-    <main class="container mx-auto p-8 items-center mt-24">
+        <Preloader v-if="isLoading"/>
+    <main class="container mx-auto p-8 items-center mt-24" :class="{back : removeClass}" v-else>
         <div class="flex justify-end user">
-            <button class="cursor-normal border-2 border-red-600 rounded-full p-1">
+            <button class="cursor-normal border-2 border-red-500 rounded-full p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="#f45044" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="8" r="5" fill="#f45044"/><path d="M20 21a8 8 0 1 0-16 0"/><path fill="#f45044" d="M12 13a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z"/></g></svg>
                 <p class="number">{{ notes.length }}</p>
             </button>
@@ -34,13 +35,16 @@
 </template>
 
 <script setup>
+import Preloader from "../components/Preloader.vue"
 import Card from "../components/Card.vue"
 import Modal from "../components/Modal.vue"
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 const showModal = ref(false)
 const notes = ref([])
 const error = ref("")
 const name = ref("")
+const isLoading = ref(true)
+
 
 watch(name, (newval) => {
     localStorage.setItem("name", newval)
@@ -76,6 +80,22 @@ const addNote = (title, note) => {
 const deleteNote = (index) => {
     notes.value.splice(index, 1)
 }
+const removeClass = ref(false)
+const handleResize = () => {
+    removeClass.value = window.innerWidth <= 660;
+};
+
+onMounted(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    setTimeout(() => {
+    isLoading.value = false;
+  }, 1000); 
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize);
+});
 </script>
 
 <style scoped>
@@ -106,5 +126,12 @@ input[type="text"]::placeholder {
     top: -10px;
     right: 0;
     font-family: Syne;
+}
+.back {
+    aspect-ratio: 540/960;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../public/polygon-scatter-haikei (1).svg");
 }
 </style>

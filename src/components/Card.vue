@@ -30,15 +30,13 @@ const deleteNote = (index) => {
 <style scoped>
         .card-container {
         flex-wrap: wrap;
-        height: 100%;
         gap: 1rem;
         overflow: hidden;
         font-family: Syne;
     }
     .card {
         min-width: 80%;
-        min-height: 50%;
-        max-width: auto;
+        height: fit-content;
         max-height: auto;
         padding: 1rem;
         border-radius: 0.9rem;
