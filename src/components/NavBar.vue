@@ -9,7 +9,7 @@
             <RouterLink to="/getstarted/note" active-class="active" class="hover:text-red-500 duration-100 ease-linear">Get Started</RouterLink>
             <RouterLink to="/tasks" active-class="active" class="hover:text-red-500 duration-100 ease-linear">Tasks</RouterLink>
         </div>
-        <button class="block md:hidden">
+        <button class="block md:hidden rotate-180">
             <svg id="open" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m5 13l4 4l-1.4 1.42L1.18 12L7.6 5.58L9 7l-4 4h16v2H5m16-7v2H11V6h10m0 10v2H11v-2h10Z"/></svg>
         </button>
     </nav>
@@ -30,18 +30,13 @@
 
 <script setup>
     import {RouterLink} from "vue-router"
-    import {ref} from "vue"
-    // const showLinks = ref(true)
-    // const closeLinks = () => {
-    //     showLinks.value = false
-    // }
 </script>
    
 <style scoped>
  * {
         font-family: Poppins;
     }
-    nav {min-width: 100%;}
+    nav {min-width: 100%; z-index: 99;}
     #close {
         display: none;
         transition: all 0.9s ease-in-out;

@@ -48,27 +48,13 @@
             </Transition>
             <p class="text-gray-800">e.g Watch Looney Tunes, Trade Stock</p>
         </form>
-        <div class="tasks space-y-4 rounded-lg" v-if="tasks.length > 0">
-            <div v-for="task in tasks">
-                <div class="flex justify-between md:justify-around bg-gray-100 p-3 shadow-md rounded-xl">
-                    <input type="checkbox">
-                    <label for="">{{ task }}</label>
-                    <button @click="deleteTask(index)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                            <path fill="#f45044"
-                                d="M227.313 363.313L312 278.627l84.687 84.686l22.626-22.626L334.627 256l84.686-84.687l-22.626-22.626L312 233.373l-84.687-84.686l-22.626 22.626L289.373 256l-84.686 84.687l22.626 22.626z" />
-                            <path fill="#f45044"
-                                d="M472 64H194.644a24.091 24.091 0 0 0-17.42 7.492L16 241.623v28.754l161.224 170.131a24.091 24.091 0 0 0 17.42 7.492H472a24.028 24.028 0 0 0 24-24V88a24.028 24.028 0 0 0-24-24Zm-8 352H198.084L48 257.623v-3.246L198.084 96H464Z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+        <TaskDetails :tasks="tasks" @deleteTask="deleteTask"/>
     </main>
 </template>
 
 <script setup>
 import Preloader from "../components/Preloader.vue"
+import TaskDetails from "../components/TaskDetails.vue"
 import { ref, onMounted, watch, onUnmounted } from "vue"
 import User from "../components/User.vue"
 const tasks = ref([])
@@ -82,7 +68,10 @@ const addTask = () => {
         return
     }
     error.value = false
-    tasks.value.push(task.value)
+    tasks.value.push({
+        task: task.value,
+        done: false
+    })
     task.value = ""
 }
 const deleteTask = (index) => {
@@ -113,17 +102,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.tasks {
-    padding: 10px;
-    margin: 2rem auto;
-    width: 80%;
-    color: rgb(37, 37, 37);
-}
-
-p,
-.tasks {
-    font-family: Syne;
-}
 
 h2,
 form {

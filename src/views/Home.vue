@@ -16,7 +16,7 @@
                 <button @click="router.push('/getstarted/note')"
                 style="background: rgb(191,59,12);
 background: linear-gradient(45deg, #f45044 30%, rgb(255, 99, 87) 91%);"
-                class="text-white p-3 rounded-full transition-all duration-500 ease-in-out hover:bg-transparent hover:border-2 hover:border-red-500">
+                class="text-white p-3 shadow-md rounded-full transition-all duration-500 ease-in-out ">
                     Get Started
                 </button>
             </div>
