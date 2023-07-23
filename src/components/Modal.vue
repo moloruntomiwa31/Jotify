@@ -63,7 +63,8 @@ const handleTextareaInput = (e) => {
 .modal {
     position: relative;
     min-width: 20%;
-    min-height: 50%;
+    height: fit-content;
+    top: 8%;
 }
 
 .cross {

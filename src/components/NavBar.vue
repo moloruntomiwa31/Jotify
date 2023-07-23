@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-gray-100 fixed top-0 left-0 container mx-auto px-6 py-6 items-center flex justify-between md:px-16">
+    <nav class="bg-gray-100 fixed top-0 left-0 container mx-auto px-6 py-4 items-center flex justify-between md:px-16">
         <div class="flex items-center">
             <img src="../../public/jotify.svg" alt="">
             <h1 class="text-black font-bold text-2xl">Jot<span class="text-red-400">ify</span></h1>
