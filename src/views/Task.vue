@@ -19,6 +19,7 @@
                 Jot<span class="text-red-400">ify</span> Tasks
             </h2>
         </header>
+
         <form class="flex flex-col justify-center items-center space-y-4" @submit.prevent="addNote">
             <div class="flex space-x-4 category">
                 <div class="flex flex-col items-center">
@@ -30,6 +31,7 @@
                     <input type="radio" name="usage" id="personal" value="personal" class=" h-4 w-4">
                 </div>
             </div>
+
             <div class="task-bar flex justify-center">
                 <input type="text" v-model.trim="task" class="p-3 bg-gray-200 rounded-lg outline-none text-red-500"
                     placeholder="Task here.." @keyup.enter="addTask">
@@ -43,11 +45,13 @@
                     Add Task
                 </button>
             </div>
+            <!-- error -->
             <Transition name="fade">
                 <p class="text-red-600 italic" v-if="error">Please add task</p>
             </Transition>
             <p class="text-gray-800">e.g Watch Looney Tunes, Trade Stock</p>
         </form>
+
         <TaskDetails :tasks="tasks" @deleteTask="deleteTask"/>
     </main>
 </template>
@@ -84,6 +88,8 @@ onMounted(() => {
     tasks.value = JSON.parse(localStorage.getItem("tasks")) || []
 })
 const removeClass = ref(false)
+
+// background vue media query
 const handleResize = () => {
     removeClass.value = window.innerWidth <= 660;
 };
