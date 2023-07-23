@@ -7,7 +7,7 @@
                 <p class="number">{{ notes.length }}</p>
             </button>
         </div>
-        <Modal :showModal="showModal" :error="error" @submit="addNote" />
+        <Modal :showModal="showModal" :error="error" @submit="addNote" @close="closeNoteModal"/>
         <h2 class="justify-center text-3xl pb-6 flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g fill="none" stroke="#f44245" stroke-width="1.5">
@@ -79,6 +79,9 @@ const addNote = (title, note) => {
 }
 const deleteNote = (index) => {
     notes.value.splice(index, 1)
+}
+const closeNoteModal = () => {
+    showModal.value = false
 }
 const removeClass = ref(false)
 const handleResize = () => {
