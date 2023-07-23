@@ -32,6 +32,10 @@ p,
     font-family: Syne;
 }
 .done {
-    color: green;
+    color: white;
+    background-color: green;
+    padding: 4px;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
 }
 </style>
